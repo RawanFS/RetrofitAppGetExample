@@ -34,13 +34,13 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
 //        getPosts();
         getComments();
 
-//        Call<List<Post>> call = jsonPlaceHolderApi.getPosts();
-//
+        Call<List<Post>> call = jsonPlaceHolderApi.getPosts();
+
 //        call.enqueue(new Callback<List<Post>>() {
 //            @Override
 //            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getComments() {
-        Call<List<Comment>> call = jsonPlaceHolderApi.getComments(3);
+        Call<List<Comment>> call = jsonPlaceHolderApi.getComments(2);
 
         call.enqueue(new Callback<List<Comment>>() {
             @Override
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                     content += "Post ID:  " + comment.getPostId() + "" + "\n";
                     content += "Name:  " + comment.getName() + "" + "\n";
                     content += "Email:  " + comment.getEmail() + "" + "\n";
-                    content += "Comment:  " + comment.getComment() + "" + "\n";
+                    content += "Comment:  " + comment.getBody() + "" + "\n";
 
                     tvResult.append(content);
                 }
